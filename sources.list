@@ -1,0 +1,14 @@
+deb http://mirror.yandex.ru/debian testing main contrib non-free
+deb-src http://mirror.yandex.ru/debian testing main contrib non-free
+
+deb http://security.debian.org/ testing/updates main contrib non-free
+deb-src http://security.debian.org/ testing/updates main contrib non-free
+
+deb-src http://www.deb-multimedia.org testing main non-free
+deb http://www.deb-multimedia.org testing main non-free
+
+deb http://mirror.yandex.ru/debian unstable main contrib non-free
+deb-src http://mirror.yandex.ru/debian unstable main contrib non-free
+
+deb http://mirror.yandex.ru/debian experimental main contrib non-free
+deb-src http://mirror.yandex.ru/debian experimental main contrib non-free
