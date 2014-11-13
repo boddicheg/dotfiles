@@ -52,15 +52,13 @@ set statusline=%f%m%r%h%w\ %y\ enc:%{&enc}\ ff:%{&ff}\ fenc:%{&fenc}%=(ch:%3b\ h
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=~/.vim/bundle/vundle
 call vundle#begin()
-
-" let Vundle manage Vundle
-" required!
 
 Plugin 'gmarik/vundle'
 
 Plugin 'Lokaltog/vim-powerline' " Turns on vim powerline which activates status line at the bottom
+Plugin 'Valloric/YouCompleteMe' " YouCompleteMe is a fast, as-you-type, fuzzy-search code completion engine for Vim
 
 call vundle#end()
 filetype plugin indent on
@@ -75,3 +73,11 @@ filetype plugin indent on
 " see :h vundle for more details or wiki for FAQ
 " NOTE: comments after Bundle commands are not allowed.
 "
+
+
+" ========= YouCompleteMe options =========
+let g:ycm_collect_identifiers_from_tags_files=1
+let g:ycm_seed_identifiers_with_syntax=1
+let g:ycm_autoclose_preview_window_after_completion=1
+let g:ycm_autoclose_preview_window_after_insertion=1
+let g:ycm_enable_diagnostic_signs = 0

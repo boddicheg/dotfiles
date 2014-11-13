@@ -10,3 +10,14 @@ dotfiles
 2) "apt.conf" and "preferences"  - Debian packages configurations
 3) bashrc - *nix terminal configuration
 4) gitconfig - aliases for git
+
+
+YCM  instllation features:
+- install libclang on Debian/Ubuntu - sudo apt-get install libclang-dev
+
+Steps:
+
+git clone https://github.com/Valloric/YouCompleteMe.git ~/.vim/bundle/YouCompleteMe
+cd ~/.vim/bundle/YouCompleteMe
+git submodule update --init --recursive
+./install.sh --clang-completer
