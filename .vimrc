@@ -59,6 +59,7 @@ Plugin 'gmarik/vundle'
 
 Plugin 'Lokaltog/vim-powerline' " Turns on vim powerline which activates status line at the bottom
 Plugin 'Valloric/YouCompleteMe' " YouCompleteMe is a fast, as-you-type, fuzzy-search code completion engine for Vim
+Plugin 'tomasr/molokai' " TextMate like and Sublime Text like dark colorscheme for vim
 
 call vundle#end()
 filetype plugin indent on
@@ -74,6 +75,9 @@ filetype plugin indent on
 " NOTE: comments after Bundle commands are not allowed.
 "
 
+colorscheme molokai
+let g:molokai_original = 1
+let g:rehash256 = 1
 
 " ========= YouCompleteMe options =========
 let g:ycm_collect_identifiers_from_tags_files=1
@@ -81,3 +85,6 @@ let g:ycm_seed_identifiers_with_syntax=1
 let g:ycm_autoclose_preview_window_after_completion=1
 let g:ycm_autoclose_preview_window_after_insertion=1
 let g:ycm_enable_diagnostic_signs = 0
+
+
+let g:snips_trigger_key = '<C-\>'
