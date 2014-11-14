@@ -58,7 +58,7 @@ call vundle#begin()
 Plugin 'gmarik/vundle'
 
 Plugin 'Lokaltog/vim-powerline' " Turns on vim powerline which activates status line at the bottom
-Plugin 'Valloric/YouCompleteMe' " YouCompleteMe is a fast, as-you-type, fuzzy-search code completion engine for Vim
+" Plugin 'Valloric/YouCompleteMe' " YouCompleteMe is a fast, as-you-type, fuzzy-search code completion engine for Vim
 Plugin 'tomasr/molokai' " TextMate like and Sublime Text like dark colorscheme for vim
 
 call vundle#end()
