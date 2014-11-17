@@ -16,6 +16,7 @@ set bg=dark
 set t_Co=256
 
 set nobackup
+set noswapfile
 
 " Save F2 - insert mode
 imap <F2> <Esc>:w<CR>
@@ -58,8 +59,17 @@ call vundle#begin()
 Plugin 'gmarik/vundle'
 
 Plugin 'Lokaltog/vim-powerline' " Turns on vim powerline which activates status line at the bottom
-" Plugin 'Valloric/YouCompleteMe' " YouCompleteMe is a fast, as-you-type, fuzzy-search code completion engine for Vim
+Plugin 'Valloric/YouCompleteMe' " YouCompleteMe is a fast, as-you-type, fuzzy-search code completion engine for Vim
 Plugin 'tomasr/molokai' " TextMate like and Sublime Text like dark colorscheme for vim
+
+Plugin 'ervandew/supertab'
+Plugin 'SirVer/ultisnips' " snippets
+
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
+Plugin 'honza/vim-snippets'
+
 
 call vundle#end()
 filetype plugin indent on
@@ -80,11 +90,8 @@ let g:molokai_original = 1
 let g:rehash256 = 1
 
 " ========= YouCompleteMe options =========
-let g:ycm_collect_identifiers_from_tags_files=1
-let g:ycm_seed_identifiers_with_syntax=1
-let g:ycm_autoclose_preview_window_after_completion=1
-let g:ycm_autoclose_preview_window_after_insertion=1
-let g:ycm_enable_diagnostic_signs = 0
+let g:ycm_confirm_extra_conf = 0
 
-
-let g:snips_trigger_key = '<C-\>'
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
