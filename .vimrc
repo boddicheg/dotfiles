@@ -95,3 +95,19 @@ let g:ycm_confirm_extra_conf = 0
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+
+
+" ========= Tabs =========
+:set tabpagemax=99
+nmap <F5> :tabnew<cr>
+imap <F5> <ESC>:tabnew<cr>
+
+map <F7> :tabnext<cr>
+nmap <F7> :tabnext<cr>
+imap <F7> :tabnext<cr>
+map <F6> :tabprev<cr>
+nmap <F6> :tabprev<cr>
+imap <F6> :tabprev<cr>
+
+" ======= Ctrl-P =========
+set runtimepath^=~/.vim/bundle/ctrlp.vim 

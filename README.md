@@ -6,6 +6,12 @@ dotfiles
 	F2 - save(:w)
 	F11 - save & exit (:wq!)
 	F12 - exit without save (:q!)
+	Ctrl+j - UltiSnips Expand Trigger, UltiSnips Jump Forward
+	Ctrl+k - UltiSnips Jump Backward Trigger
+	F5  - new tab
+	F6  - prev tab
+	F7  - next tab 
+	ctrl+p - use http://kien.github.io/ctrlp.vim/
 	
 2) "apt.conf" and "preferences"  - Debian packages configurations
 3) bashrc - *nix terminal configuration
@@ -17,7 +23,7 @@ YCM  instllation features:
 
 Steps:
 
-git clone https://github.com/Valloric/YouCompleteMe.git ~/.vim/bundle/YouCompleteMe
-cd ~/.vim/bundle/YouCompleteMe
-git submodule update --init --recursive
-./install.sh --clang-completer
+	git clone https://github.com/Valloric/YouCompleteMe.git ~/.vim/bundle/YouCompleteMe
+	cd ~/.vim/bundle/YouCompleteMe
+	git submodule update --init --recursive
+	./install.sh --clang-completer
