@@ -62,13 +62,15 @@ Plugin 'Lokaltog/vim-powerline' " Turns on vim powerline which activates status 
 Plugin 'Valloric/YouCompleteMe' " YouCompleteMe is a fast, as-you-type, fuzzy-search code completion engine for Vim
 Plugin 'tomasr/molokai' " TextMate like and Sublime Text like dark colorscheme for vim
 
-Plugin 'ervandew/supertab'
-Plugin 'SirVer/ultisnips' " snippets
+Plugin 'ctlp.vim'
 
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'garbas/vim-snipmate'
-Plugin 'honza/vim-snippets'
+"Plugin 'ervandew/supertab'
+"Plugin 'SirVer/ultisnips' " snippets
+
+"Plugin 'MarcWeber/vim-addon-mw-utils'
+"Plugin 'tomtom/tlib_vim'
+"Plugin 'garbas/vim-snipmate'
+"Plugin 'honza/vim-snippets'
 
 
 call vundle#end()
@@ -110,4 +112,7 @@ nmap <F6> :tabprev<cr>
 imap <F6> :tabprev<cr>
 
 " ======= Ctrl-P =========
-set runtimepath^=~/.vim/bundle/ctrlp.vim 
+set runtimepath^=~/.vim/bundle/ctrlp.vim
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+set wildignore+=*.o,*.out
+
