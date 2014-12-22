@@ -62,16 +62,12 @@ Plugin 'Lokaltog/vim-powerline' " Turns on vim powerline which activates status 
 Plugin 'Valloric/YouCompleteMe' " YouCompleteMe is a fast, as-you-type, fuzzy-search code completion engine for Vim
 Plugin 'tomasr/molokai' " TextMate like and Sublime Text like dark colorscheme for vim
 
-Plugin 'ctlp.vim'
+Plugin 'ctrlp.vim' " Full path fuzzy file, buffer, mru, tag, ... finder for Vim.
 
-"Plugin 'ervandew/supertab'
-"Plugin 'SirVer/ultisnips' " snippets
-
-"Plugin 'MarcWeber/vim-addon-mw-utils'
-"Plugin 'tomtom/tlib_vim'
-"Plugin 'garbas/vim-snipmate'
-"Plugin 'honza/vim-snippets'
-
+" Track the engine: https://github.com/SirVer/ultisnips
+" enable snippets
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
 
 call vundle#end()
 filetype plugin indent on
@@ -94,11 +90,6 @@ let g:rehash256 = 1
 " ========= YouCompleteMe options =========
 let g:ycm_confirm_extra_conf = 0
 
-let g:UltiSnipsExpandTrigger="<c-j>"
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-k>"
-
-
 " ========= Tabs =========
 :set tabpagemax=99
 nmap <F5> :tabnew<cr>
@@ -116,3 +107,7 @@ set runtimepath^=~/.vim/bundle/ctrlp.vim
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 set wildignore+=*.o,*.out
 
+" ======== UltiSnips ==========
+let g:UltiSnipsExpandTrigger = '<c-l>'
+let g:UltiSnipsJumpForwardTrigger = '<c-j>'
+let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
