@@ -12,6 +12,11 @@ dotfiles
 	F6  - prev tab
 	F7  - next tab 
 	ctrl+p - use http://kien.github.io/ctrlp.vim/
+
+	snippets:
+	ctrl+l - trigger UltiSnips Expand Trigger
+	ctrl+j - trigger UltiSnips jump forward trigger
+	ctrl+k - trigger UltiSnips jump backward trigger
 	
 2) "apt.conf" and "preferences"  - Debian packages configurations
 3) bashrc - *nix terminal configuration
