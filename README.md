@@ -19,7 +19,9 @@ dotfiles
 	ctrl+k - trigger UltiSnips jump backward trigger
 	
 2) "apt.conf" and "preferences"  - Debian packages configurations
+
 3) bashrc - *nix terminal configuration
+
 4) gitconfig - aliases for git
 
 
