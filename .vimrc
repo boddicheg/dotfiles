@@ -1,6 +1,9 @@
 " No Vi
 set nocompatible
 
+" Current user 
+let g:current_user = 'boddicheg'
+
 syntax on
 set cindent
 set tabstop=4 shiftwidth=4
