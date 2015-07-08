@@ -26,7 +26,16 @@ set statusline=%f%m%r%h%w\ %y\ enc:%{&enc}\ ff:%{&ff}\ fenc:%{&fenc}%=(ch:%3b\ h
 set nobackup
 set noswapfile
 " Show characters
-set list
+set list listchars=tab:»·,trail:·
+
+" remove trailing whitespaces on save (.cpp)
+autocmd BufWritePre  *.{cpp,h}  call StripTrailingWhite()
+
+function! StripTrailingWhite()
+    let l:winview = winsaveview()
+    silent! %s/\s\+$//
+    call winrestview(l:winview)
+endfunction
 " ======================== Binds =========================
 " Save F2 - insert mode
 imap <F2> <Esc>:w<CR>
@@ -69,6 +78,7 @@ Plugin 'ctrlp.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'Lokaltog/vim-powerline'
 Plugin 'tomasr/molokai'
+Plugin 'nathanaelkane/vim-indent-guides'
 
 call vundle#end()
 filetype plugin indent on
