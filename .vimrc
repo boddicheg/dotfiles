@@ -11,6 +11,8 @@ set tabstop=2
 " Google Codestyle
 set colorcolumn=80
 
+set cursorline
+
 set smarttab
 set expandtab
 set number
