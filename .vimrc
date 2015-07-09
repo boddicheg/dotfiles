@@ -47,6 +47,15 @@ imap <F9> <esc>:wq!<cr>i
 
 " Press ESC two times for exit without save
 map <ESC><esc> :qa!<cr>
+
+" move lines
+nnoremap <A-down> :m .+1<CR>==
+nnoremap <A-up> :m .-2<CR>==
+inoremap <A-down> <Esc>:m .+1<CR>==gi
+inoremap <A-up> <Esc>:m .-2<CR>==gi
+vnoremap <A-down> :m '>+1<CR>gv=gv
+vnoremap <A-up> :m '<-2<CR>gv=gv
+
 " ======================== Tabs =========================
 :set tabpagemax=99
 nmap <F5> :tabnew<cr>
