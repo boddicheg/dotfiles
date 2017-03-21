@@ -1,10 +1,12 @@
 #/bin/sh
-if [[ -z $1 ]]; then
+if [ -z $1 ]; then
 	echo "Please set ssid as first param"
+	exit
 fi
 
-if [[ -z $2 ]]; then
+if [ -z $2 ]; then
 	echo "Please set psk as second param"
+	exit
 fi
 
 nmcli device status
