@@ -9,3 +9,5 @@
 [user]
 	name = boddicheg
 	email = boddicheg@gmail.com
+[core]
+	excludesfile = /home/boddicheg/.gitignore
