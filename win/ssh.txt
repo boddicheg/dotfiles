@@ -1,0 +1,5 @@
+ssh-keygen -t rsa -b 4096 -C "$1"
+Get-Service -Name ssh-agent | Set-Service -StartupType Manual
+Start-Service ssh-agent
+cat $USER.ssh/id_rsa.pub
+ssh git@github.com
