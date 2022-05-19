@@ -1,0 +1,37 @@
+version: '3'
+services:
+  db:
+    container_name: pg_container
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: ${PG_USER}
+      POSTGRES_PASSWORD: ${PG_PASSWORD}
+      POSTGRES_DB: ${PG_DB}
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    volumes:
+      - ${HOME}/downloader_db/pgvolume:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+  pgadmin:
+    container_name: pgadmin4_container
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
+      PGADMIN_LISTEN_PORT: 9090
+    ports:
+      - 9090:9090
+  downloader:
+    container_name: downloader
+    # manually imported image
+    image: downloader:v1
+    restart: always
+    volumes:
+      - "/srv/dev-disk-by-uuid-dc414ea1-c74d-4893-98b3-ffb607641d12/Movies:/usr/src/downloader/downloads"
+    ports:
+      - 5000:5000
+    environment:
+      DOCKER: 1
+    network_mode: host

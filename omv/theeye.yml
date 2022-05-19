@@ -1,0 +1,24 @@
+version: '3'
+services:
+  db:
+    container_name: theeye-container
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: ${PG_USER}
+      POSTGRES_PASSWORD: ${PG_PASSWORD}
+      POSTGRES_DB: ${PG_DB}
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    volumes:
+      - ${HOME}/theeye_db/pgvolume:/var/lib/postgresql/data
+    ports:
+      - 5433:5432
+  theeye:
+    container_name: theeye
+    image: theeye:v2
+    restart: always
+    ports:
+      - 5001:5001
+    network_mode: host
+    environment:
+      DOCKER: "1"

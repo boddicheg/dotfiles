@@ -1,0 +1,58 @@
+version: '3'
+services:
+  homeassistant:
+    container_name: hass
+    image: homeassistant/home-assistant
+    volumes:
+      - "${HOME}/hass-config:/config"
+      - /etc/localtime:/etc/localtime:ro
+    restart: unless-stopped
+    network_mode: host
+    depends_on:
+      - mariadb
+      - mosquitto
+  mariadb:
+    image: linuxserver/mariadb
+    container_name: mariadb
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+      MYSQL_DATABASE: ha_db
+      MYSQL_USER: homeassistant
+      MYSQL_PASSWORD: "${HA_MYSQL_PASSWORD}"
+      user: "${PUID}:${PGID}"
+    volumes:
+      - "${HOME}/mariadb:/config"
+    ports:
+      - 3306:3306
+  mosquitto:
+    image: eclipse-mosquitto
+    container_name: mosquitto
+    restart: unless-stopped
+    ports:
+      - 1883:1883
+      - 1884:1884
+    volumes:
+      - "${HOME}/mosquitto/config:/mosquitto/config"
+      - "${HOME}/mosquitto/data:/mosquitto/data"
+      - "${HOME}/hass/mosquitto/log:/mosquitto/log"
+    environment:
+      TZ: "${TZ}"
+    user: "${PUID}:${PGID}"
+
+  esphome:
+    container_name: esphome
+    image: esphome/esphome
+#    devices:
+#      - /dev/ttyUSB0:/dev/ttyUSB0
+    environment:
+      TZ: "${TZ}"
+    network_mode: host
+    ports:
+      - 6052:6052
+      - 6123:6123
+    restart: unless-stopped
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - "${HOME}/esphome:/config"
+    
