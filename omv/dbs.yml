@@ -1,0 +1,52 @@
+version: '3'
+services:
+  pg_downloader:
+    container_name: pg_downloader_db
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: ${PG_USER}
+      POSTGRES_PASSWORD: ${PG_PASSWORD}
+      POSTGRES_DB: ${PG_DOWNLOADER_DB}
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    volumes:
+      - "/srv/dev-disk-by-uuid-dc414ea1-c74d-4893-98b3-ffb607641d12/DBS/downloader_db/pgvolume:/var/lib/postgresql/data"
+    ports:
+      - 5432:5432
+  pg_theeye:
+    container_name: pg_theeye_db
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: ${PG_USER}
+      POSTGRES_PASSWORD: ${PG_PASSWORD}
+      POSTGRES_DB: ${PG_THEEYE_DB}
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    volumes:
+      - "/srv/dev-disk-by-uuid-dc414ea1-c74d-4893-98b3-ffb607641d12/DBS/theeye_db/pgvolume:/var/lib/postgresql/data"
+    ports:
+      - 5433:5432
+  mariadb_hass:
+    image: linuxserver/mariadb
+    container_name: mariadb_hass_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+      MYSQL_DATABASE: ha_db
+      MYSQL_USER: homeassistant
+      MYSQL_PASSWORD: "${HA_MYSQL_PASSWORD}"
+      user: "${PUID}:${PGID}"
+    volumes:
+      - "/srv/dev-disk-by-uuid-dc414ea1-c74d-4893-98b3-ffb607641d12/DBS/hass/mariadb:/config"
+    ports:
+      - 3306:3306
+  pgadmin:
+    container_name: pgadmin4
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
+      PGADMIN_LISTEN_PORT: 9090
+    ports:
+      - 9090:9090

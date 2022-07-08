@@ -9,22 +9,7 @@ services:
     restart: unless-stopped
     network_mode: host
     depends_on:
-      - mariadb
       - mosquitto
-  mariadb:
-    image: linuxserver/mariadb
-    container_name: mariadb
-    restart: unless-stopped
-    environment:
-      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
-      MYSQL_DATABASE: ha_db
-      MYSQL_USER: homeassistant
-      MYSQL_PASSWORD: "${HA_MYSQL_PASSWORD}"
-      user: "${PUID}:${PGID}"
-    volumes:
-      - "${HOME}/mariadb:/config"
-    ports:
-      - 3306:3306
   mosquitto:
     image: eclipse-mosquitto
     container_name: mosquitto
