@@ -40,6 +40,35 @@ services:
       - "/srv/dev-disk-by-uuid-dc414ea1-c74d-4893-98b3-ffb607641d12/DBS/hass/mariadb:/config"
     ports:
       - 3306:3306
+  mariadb_photoprism:
+    image: linuxserver/mariadb
+    container_name: mariadb_photoprism_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+      MYSQL_DATABASE: photoprism
+      MYSQL_USER: photoprism
+      MYSQL_PASSWORD: "${HA_MYSQL_PASSWORD}"
+      user: "${PUID}:${PGID}"
+    volumes:
+      - "${HOME}/photoprism_mariadb:/config"
+    ports:
+      - 3307:3306
+  mongo_nodegoat:
+    image: mongo:latest
+    container_name: mongo_nodegoat_db
+    volumes:
+      - "${HOME}/mongodb:/data/db"
+    ports:
+      - 27017:27017
+    restart: unless-stopped
+  mongoclient:
+    image: mongoclient/mongoclient:latest
+    container_name: mongoclient
+    hostname: mongoclient
+    restart: unless-stopped
+    ports:
+    - 9091:3000
   pgadmin:
     container_name: pgadmin4
     image: dpage/pgadmin4
