@@ -12,3 +12,21 @@ services:
     environment:
       DOCKER: 1
     network_mode: host
+  kavita:
+    image: kizaing/kavita:latest
+    container_name: kavita
+    volumes:
+      - "/srv/dev-disk-by-uuid-dc414ea1-c74d-4893-98b3-ffb607641d12/Movies/Books:/manga"
+      - "/srv/dev-disk-by-uuid-dc414ea1-c74d-4893-98b3-ffb607641d12/DBS/kavita_conf:/kavita/config"
+    ports:
+      - "5001:5000"
+    restart: always
+  homer:
+    container_name: homer
+    image: b4bz/homer:latest
+    ports:
+      - "5002:8080"
+    restart: always
+    volumes:
+      - "/srv/dev-disk-by-uuid-dc414ea1-c74d-4893-98b3-ffb607641d12/DBS/homer_conf:/www/assets"
+       
