@@ -4,6 +4,9 @@ services:
     container_name: juice-shop
     image: bkimminich/juice-shop
     restart: always
+    # Safety override
+    environment:
+      NODE_ENV: "unsafe"
     ports:
       - "3000:3000"
     networks:
