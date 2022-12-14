@@ -1,31 +1,51 @@
-version: '3'
+version: '3.8'
 services:
+  # ----------------------------------------------------------------------
   pg_downloader:
     container_name: pg_downloader_db
     image: postgres
     restart: always
     environment:
+      user: "${PUID}:${PGID}"
       POSTGRES_USER: ${PG_USER}
       POSTGRES_PASSWORD: ${PG_PASSWORD}
       POSTGRES_DB: ${PG_DOWNLOADER_DB}
       PGDATA: "/var/lib/postgresql/data/pgdata"
     volumes:
-      - "/srv/dev-disk-by-uuid-dc414ea1-c74d-4893-98b3-ffb607641d12/DBS/downloader_db/pgvolume:/var/lib/postgresql/data"
+      - "${HOME}/downloader_db/pgvolume:/var/lib/postgresql/data"
     ports:
       - 5432:5432
+  # ----------------------------------------------------------------------
   pg_theeye:
     container_name: pg_theeye_db
     image: postgres
     restart: always
     environment:
+      user: "${PUID}:${PGID}"
       POSTGRES_USER: ${PG_USER}
       POSTGRES_PASSWORD: ${PG_PASSWORD}
       POSTGRES_DB: ${PG_THEEYE_DB}
       PGDATA: "/var/lib/postgresql/data/pgdata"
     volumes:
-      - "/srv/dev-disk-by-uuid-dc414ea1-c74d-4893-98b3-ffb607641d12/DBS/theeye_db/pgvolume:/var/lib/postgresql/data"
+      - "${HOME}/theeye_db/pgvolume:/var/lib/postgresql/data"
     ports:
       - 5433:5432
+  # ----------------------------------------------------------------------
+  pg_nextcloud:
+    container_name: pg_nextcloud_db
+    image: postgres
+    restart: always
+    environment:
+      user: "${PUID}:${PGID}"
+      POSTGRES_USER: ${PG_USER}
+      POSTGRES_PASSWORD: ${PG_PASSWORD}
+      POSTGRES_DB: nextcloud
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    volumes:
+      - "${HOME}/nextcloud_db/pgvolume:/var/lib/postgresql/data"
+    ports:
+      - 5440:5432
+  # ----------------------------------------------------------------------
   mariadb_hass:
     image: linuxserver/mariadb
     container_name: mariadb_hass_db
@@ -37,9 +57,10 @@ services:
       MYSQL_PASSWORD: "${HA_MYSQL_PASSWORD}"
       user: "${PUID}:${PGID}"
     volumes:
-      - "/srv/dev-disk-by-uuid-dc414ea1-c74d-4893-98b3-ffb607641d12/DBS/hass/mariadb:/config"
+      - "${HOME}/hass/mariadb:/config"
     ports:
       - 3306:3306
+  # ----------------------------------------------------------------------
   mariadb_photoprism:
     image: linuxserver/mariadb
     container_name: mariadb_photoprism_db
@@ -54,28 +75,63 @@ services:
       - "${HOME}/photoprism_mariadb:/config"
     ports:
       - 3307:3306
+  # ----------------------------------------------------------------------
   mongo_nodegoat:
     image: mongo:latest
     container_name: mongo_nodegoat_db
+    environment:
+      user: "${PUID}:${PGID}"
     volumes:
       - "${HOME}/mongodb:/data/db"
     ports:
       - 27017:27017
     restart: unless-stopped
+  # ----------------------------------------------------------------------
   mongoclient:
     image: mongoclient/mongoclient:latest
     container_name: mongoclient
     hostname: mongoclient
     restart: unless-stopped
+    environment:
+      user: "${PUID}:${PGID}"
     ports:
     - 9091:3000
+  # ----------------------------------------------------------------------
   pgadmin:
     container_name: pgadmin4
     image: dpage/pgadmin4
     restart: always
     environment:
+      user: "${PUID}:${PGID}"
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL}
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
       PGADMIN_LISTEN_PORT: 9090
     ports:
       - 9090:9090
+  # ----------------------------------------------------------------------
+  redis:
+    image: redis:6
+    container_name: nextcloud_redis
+    restart: always
+    command: ["--databases", "1"]
+    environment:
+      user: "${PUID}:${PGID}"
+    ports:
+      - '6379:6379'
+    volumes:
+      - "${HOME}/nextcloud_redis:/data"
+  # ----------------------------------------------------------------------
+  pg_joplin:
+    container_name: pg_joplin_db
+    image: postgres
+    restart: always
+    environment:
+      user: "${PUID}:${PGID}"
+      POSTGRES_USER: ${PG_USER}
+      POSTGRES_PASSWORD: ${PG_PASSWORD}
+      POSTGRES_DB: ${PG_JOPLIN_DB}
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    volumes:
+      - "${HOME}/joplin_db/pgvolume:/var/lib/postgresql/data"
+    ports:
+      - 5445:5432

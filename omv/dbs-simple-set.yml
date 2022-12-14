@@ -1,0 +1,62 @@
+version: '3'
+services:
+  mongodb:
+   image: mongo:latest
+   container_name: mongodb
+   volumes:
+      - "${HOME}/mongo:/data/db"
+   ports:
+      - 27017:27017
+   restart: unless-stopped
+  mongoclient:
+    image: mongoclient/mongoclient:latest
+    container_name: mongoclient
+    hostname: mongoclient
+    restart: unless-stopped
+    ports:
+    - 9091:3000
+  mysqldb:
+    image: linuxserver/mariadb:latest
+    container_name: mysqldb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: localpassword
+      MYSQL_DATABASE: mysql
+      MYSQL_USER: boddicheg
+      MYSQL_PASSWORD: localpassword
+      #user: "501:20"
+    volumes:
+      - "${HOME}/maria:/config"
+    ports:
+      - 3306:3306
+  mysqlclient:
+    image: phpmyadmin:latest
+    container_name: mysqlclient
+    restart: always
+    ports:
+      - 9092:80
+    environment:
+      - PMA_ARBITRARY=1
+  pgdb:
+    container_name: pgdb
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_USER: boddicheg
+      POSTGRES_PASSWORD: localpassword
+      POSTGRES_DB: local
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    volumes:
+      - "${HOME}/pg:/var/lib/postgresql/data"
+    ports:
+      - 5432:5432
+  pgclient:
+    container_name: pgclient
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: test@test.com
+      PGADMIN_DEFAULT_PASSWORD: localpassword
+      PGADMIN_LISTEN_PORT: 9090
+    ports:
+      - 9090:9090

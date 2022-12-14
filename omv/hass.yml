@@ -28,8 +28,8 @@ services:
   esphome:
     container_name: esphome
     image: esphome/esphome
-#    devices:
-#      - /dev/ttyUSB0:/dev/ttyUSB0
+    devices:
+      - /dev/ttyUSB0:/dev/ttyUSB0
     environment:
       TZ: "${TZ}"
     network_mode: host
